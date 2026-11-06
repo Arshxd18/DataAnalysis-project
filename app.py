@@ -148,7 +148,11 @@ st.markdown("""
 # ── 3. Data Loading with Cache ────────────────────────────────────────────────
 @st.cache_data
 def load_dataset():
-    paths = ["master_df_cleaned.csv", "ProjectData/master_df_cleaned.csv"]
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    paths = [
+        os.path.join(base_dir, "master_df_cleaned.csv"),
+        os.path.join(base_dir, "ProjectData", "master_df_cleaned.csv"),
+    ]
     for path in paths:
         if os.path.exists(path):
             df = pd.read_csv(path)
